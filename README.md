@@ -15,6 +15,10 @@ Please respect their copyrights, and buy this great game. It may seem expensive 
 it's very resonably priced. 
 
 
+## Example
+
+Look at http://dieck.github.io/GloomhavenScenarioViewer/example
+
 
 ## Technical details
 
@@ -52,10 +56,11 @@ The `locations.txt` file has the following format:
 ```
 # Comment 
 
-# Heading per filename, stating only the number
+# Heading per filename, first one stating the scenario name
 % 000 Scenario Name
 # Left Top Width Height Color Text
 
+# multi-page: -2, -3 and so on. No name needed.
 % 000-2
 # Left Top Width Height Color Text
 
