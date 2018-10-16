@@ -17,7 +17,7 @@ it's very resonably priced.
 
 ## Example
 
-Look at http://dieck.github.io/GloomhavenScenarioViewer/example
+Look at http://dieck.github.io/GloomhavenScenarioViewer
 
 
 ## Technical details
