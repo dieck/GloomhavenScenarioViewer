@@ -25,8 +25,11 @@ There are 2 main files:
 - locations.txt (see below)
 
 Content needs to be placed in directory `scenes` 
-- naming schema: "000 Scenario Title.jpg"
-- or "000-2 Scenario Title.jpg" (second and following page of multi-page scenarios)
+- naming schema: `000_ScenarioName.jpg`
+- or `000-2.jpg` (second and following page of multi-page scenarios)
+- The scenario name is optional, just to better sort the images. Everything following an underscore will be ignored
+- Do not use Non-Web-Safe characters, e.g. slashes, or Umlauts
+- e.g. `001_Schwarzgrab.jpg` or `002-2.jpg`
  
 
 ## Scanning
@@ -50,7 +53,7 @@ The `locations.txt` file has the following format:
 # Comment 
 
 # Heading per filename, stating only the number
-% 000
+% 000 Scenario Name
 # Left Top Width Height Color Text
 
 % 000-2
@@ -77,17 +80,13 @@ Specialties for Text:
 947 398 408 373 red Gegner
 951 772 393 293 orange Ausstattung
 520 633 349 387 lightgray Start-Raum
-459 1009 480 144 gray [Raum 2]
+459 1009 480 144 gray Raum 2
 430 1153 533 256 gray [Raum 2]
 455 1409 477 142 gray [Raum 2]
-956 1135 383 218 gray [Raum A]
-927 1398 207 440 gray [Raum B]
-846 1517 83 326 gray [Raum B]
-747 1568 102 272 gray [Raum B]
-244 1380 214 460 gray [Raum C]
-456 1520 81 320 gray [Raum C]
-534 1566 100 275 gray [Raum C]
-50 1137 389 214 gray [Raum D]
-
 ```
+
+
+## Outlook
+Polygons! Circles! Shapes!
+If I ever find the time...
 

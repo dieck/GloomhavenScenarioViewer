@@ -32,7 +32,7 @@ function existsScene($s) {
   # go through directory
   while (($file = readdir($dh)) !== false) {
     # look for picture files
-    if (preg_match('/('.$s.'\-?\d*)\ .*\.jpg/', $file, $m)) {
+    if (preg_match('/('.$s.'\-?\d*)\_.*\.jpg/', $file, $m)) {
       # if exists in array from locations.txt, remove
       if (in_array($m[1], $found)) {
         unset($found[$m[1]]);
@@ -49,14 +49,15 @@ function existsScene($s) {
   if (count($found) > 0) return 'Scenes file error';  
 }
 
-
-function findFilenames($s) {
-
+/**
+  find ALL filenames starting with $ddd
+**/
+function findFilenames($ddd) {
   $jpgs = array();
   
   $dirs = scandir('scenes');
   foreach ($dirs as $d) {
-    if (preg_match('/('.$s.'\-?\d*)\ .*\.jpg/', $d, $m)) {
+    if (preg_match('/^('.$ddd.'\-?\d*)(\_.*)?\.jpg$/', $d, $m)) {
       $jpgs[$m[1]] = $d;      
     }
   }
@@ -64,8 +65,45 @@ function findFilenames($s) {
   return $jpgs; 
 }
 
-function findLocations($s) {
+
+/**
+  find single (first) filenaming matching 000 or 000-2
+**/
+function findFilename($s) {
+  $dirs = scandir('scenes');
+  foreach ($dirs as $d) {
+    if (preg_match('/^('.$s.')(\_.*)?\.jpg$/', $d, $m)) {
+      return $d;
+    }
+  }
+}
+
+/**
+  find all image entries for a scenario (000) from location definition
+**/
+function findImages($scen) {
   $locations = file('locations.txt');
+  
+  $loc = array();
+
+  foreach ($locations as $line) {
+    $line = trim($line);
+    
+    if (preg_match('/^%\s('.$scen.'(\-\d+)?)(\s.*)?$/', $line, $m)) {
+      $loc[$m[1]] = $m[3] ? trim($m[3]) : false;
+    }
+
+  }
+  return $loc;                          
+}
+
+/**
+  find all CSS overlay positions for a scenario Image
+**/
+function findOverlays($img) {
+  $locations = file('locations.txt');
+  
+  $rimg = preg_replace('/\-/', '\\-', $img);
   
   $inMarker = false;
   $loc = array();
@@ -74,7 +112,7 @@ function findLocations($s) {
     $line = trim($line);
     
     if (substr($line, 0, 1) === '%') $inMarker = false;
-    if ($line == '% ' . $s) $inMarker = true;
+    if (preg_match('/^%\s'.$rimg.'([^\-].*)?$/', $line)) $inMarker = true;
  
     if (($inMarker) and (preg_match('/^(\d+)\s(\d+)\s(\d+)\s(\d+)\s(#?\w+)\s?(.*)$/', $line, $m))) {
       $loc[] = $line;

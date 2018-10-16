@@ -23,15 +23,16 @@
     <ul>
 <?php
 
-  $d = scandir("scenes");
-  foreach ($d as $f) {
-    if (preg_match('/^(\d\d\d)\ (.*)\.jpg$/', $f, $m)) {
+  $locations = file("locations.txt");
+  foreach ($locations as $line) {
+    $line = trim($line);
+    if (preg_match('/^\%\s(\d\d\d)\s(.*)$/', $line, $m)) {
       $num = $m[1];
       $txt = htmlentities($m[2]);
       print '<li><a href="?scene='.$num.'">'.$num.': '.$txt.'</a></li>'."\n";
     }
   }
-
+    
 ?>  
     </ul>
   </div>
