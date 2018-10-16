@@ -1,0 +1,116 @@
+<html>
+
+<head>
+  <title>Gloomhaven Szenarien-Helfer</title>
+
+<style>
+
+.container {
+    position: relative;
+}
+
+.step {
+    position: absolute;
+    z-index: 2;
+}
+
+.stepi {
+    position: absolute;
+    background-color: #ff0000;
+    z-index: 1;
+}
+
+.stepi p {
+    text-align: center;
+    position: relative;
+    top: 25%;
+    -ms-transform: translateY(-25%);
+    -webkit-transform: translateY(-25%);
+    transform: translateY(-25%);
+    font-size: 25px;
+	font-family: Verdana, sans-serif;
+}
+
+</style>
+
+<style>
+#id_a7bb17c3136b66c754adc8658ac41f093e2b29d8 { left: 59; top: 1007; width: 336; height: 171; }
+#id_a7bb17c3136b66c754adc8658ac41f093e2b29d8_i { width: 336; height: 171; background-color: blue; }
+#id_72846f6163e6c1e2ccadb1dcc4f7b40de635269c { left: 389; top: 212; width: 268; height: 190; }
+#id_72846f6163e6c1e2ccadb1dcc4f7b40de635269c_i { width: 268; height: 190; background-color: green; }
+#id_00cbdae19ca7950dcb1ef47b87c3ce67a4d0ed9a { left: 195; top: 1199; width: 285; height: 111; }
+#id_00cbdae19ca7950dcb1ef47b87c3ce67a4d0ed9a_i { width: 285; height: 111; background-color: red; }
+#id_cac4a9fdcf37d973b8a77e65ef7902c39a7f969c { left: 485; top: 1199; width: 352; height: 108; }
+#id_cac4a9fdcf37d973b8a77e65ef7902c39a7f969c_i { width: 352; height: 108; background-color: orange; }
+#id_fcce534733e4342d34ccf599936fd299f701a4da { left: 583; top: 862; width: 413; height: 291; }
+#id_fcce534733e4342d34ccf599936fd299f701a4da_i { width: 413; height: 291; background-color: gray; }
+#id_47f85c46cc40b7aa8ebc2077ce05d6d4e37733e6 { left: 687; top: 410; width: 203; height: 452; }
+#id_47f85c46cc40b7aa8ebc2077ce05d6d4e37733e6_i { width: 203; height: 452; background-color: gray; }
+#id_84bdaa90d6ad17f57d2ae166404a33018291ccc2 { left: 396; top: 466; width: 297; height: 343; }
+#id_84bdaa90d6ad17f57d2ae166404a33018291ccc2_i { width: 297; height: 343; background-color: gray; }
+#id_91a38dacf14895e828223be2eb10024ce222bee1 { left: 697; top: 216; width: 290; height: 33; }
+#id_91a38dacf14895e828223be2eb10024ce222bee1_i { width: 290; height: 33; background-color: green; }
+#id_97bcfeee86d6fd3f764161882cbd6ef9e86a1f6c { left: 693; top: 283; width: 295; height: 33; }
+#id_97bcfeee86d6fd3f764161882cbd6ef9e86a1f6c_i { width: 295; height: 33; background-color: green; }
+</style>
+
+
+<script>
+function toggleHide(e) {
+  p = e.parentElement;
+
+  o = e.style.opacity;
+  
+  if ((o == "") || (o != 0)) {	
+    e.style.opacity = 0;
+    p.style.borderStyle = "dotted";
+  } else {
+    e.style.opacity = 1;
+    p.style.borderStyle = "none";
+  }
+  
+}
+</script>
+
+<body>
+
+<div class="heading">
+<h1>Schwarzgrab
+</h1>
+<a href="scene.php_scene=new.html">Anderes Szenario</a> 
+</div>
+
+<div class="container">
+<img src="scen001/page_001.jpg" width="1050" height="1360" style="z-index: 0;" />
+<div class="step" id="id_a7bb17c3136b66c754adc8658ac41f093e2b29d8"><div class="stepi" id="id_a7bb17c3136b66c754adc8658ac41f093e2b29d8_i" onClick="toggleHide(this);">
+<p>Schritt 1</p>
+</div></div>
+<div class="step" id="id_72846f6163e6c1e2ccadb1dcc4f7b40de635269c"><div class="stepi" id="id_72846f6163e6c1e2ccadb1dcc4f7b40de635269c_i" onClick="toggleHide(this);">
+<p>Epilog</p>
+</div></div>
+<div class="step" id="id_00cbdae19ca7950dcb1ef47b87c3ce67a4d0ed9a"><div class="stepi" id="id_00cbdae19ca7950dcb1ef47b87c3ce67a4d0ed9a_i" onClick="toggleHide(this);">
+<p>Monster</p>
+</div></div>
+<div class="step" id="id_cac4a9fdcf37d973b8a77e65ef7902c39a7f969c"><div class="stepi" id="id_cac4a9fdcf37d973b8a77e65ef7902c39a7f969c_i" onClick="toggleHide(this);">
+<p>Ausstattung</p>
+</div></div>
+<div class="step" id="id_fcce534733e4342d34ccf599936fd299f701a4da"><div class="stepi" id="id_fcce534733e4342d34ccf599936fd299f701a4da_i" onClick="toggleHide(this);">
+<p>Start Raum</p>
+</div></div>
+<div class="step" id="id_47f85c46cc40b7aa8ebc2077ce05d6d4e37733e6"><div class="stepi" id="id_47f85c46cc40b7aa8ebc2077ce05d6d4e37733e6_i" onClick="toggleHide(this);">
+<p>Raum 2</p>
+</div></div>
+<div class="step" id="id_84bdaa90d6ad17f57d2ae166404a33018291ccc2"><div class="stepi" id="id_84bdaa90d6ad17f57d2ae166404a33018291ccc2_i" onClick="toggleHide(this);">
+<p>Raum 3</p>
+</div></div>
+<div class="step" id="id_91a38dacf14895e828223be2eb10024ce222bee1"><div class="stepi" id="id_91a38dacf14895e828223be2eb10024ce222bee1_i" onClick="toggleHide(this);">
+<p>Ort</p>
+</div></div>
+<div class="step" id="id_97bcfeee86d6fd3f764161882cbd6ef9e86a1f6c"><div class="stepi" id="id_97bcfeee86d6fd3f764161882cbd6ef9e86a1f6c_i" onClick="toggleHide(this);">
+<p>Erfolg</p>
+</div></div>
+</div>
+
+</body>
+
+</html>
