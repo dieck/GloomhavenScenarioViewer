@@ -293,20 +293,20 @@ class RectPosition {
        } else if (preg_match('/^\[(.*?)\]$/', $naming, $n)) {
          $this->name = $n[0];
          $this->label = null;
-         $this->class = "cl_".sha1($image->name . $n[1]);
+         $this->class = "cl_".sha1($image->scenario->name . $n[1]);
 
        # look for normal tags
        } else if (preg_match('/^(.*)$/', $naming, $n)) {
          $this->name = $n[0];
          $this->label = $n[1];
-         $this->class = "cl_".sha1($image->name . $n[1]);
+         $this->class = "cl_".sha1($image->scenario->name . $n[1]);
        
        # ok, has no tag at all
        } else {
          $this->name = null;
          $this->label = null;
          # use full positionline to build class
-         $this->class = "cl_".sha1($image->name.'/'.$m[0]);
+         $this->class = "cl_".sha1($image->scenario->name.'/'.$m[0]);
        }
 
      } else {
@@ -384,26 +384,26 @@ class RotatedPosition {
        if (preg_match('/^\!\s+?(.*)?$/', $naming, $n)) {
          $this->name = '!';
          $this->label = $n[1];
-         $this->class = "cl_".sha1($image->name.'/'.$m[0]);
+         $this->class = "cl_".sha1($image->scenario->name.'/'.$m[0]);
          
        # look for invisible tags
        } else if (preg_match('/^\[(.*?)\]$/', $naming, $n)) {
          $this->name = $n[0];
          $this->label = null;
-         $this->class = "cl_".sha1($image->name . $n[1]);
+         $this->class = "cl_".sha1($image->scenario->name . $n[1]);
 
        # look for normal tags
        } else if (preg_match('/^(.*)$/', $naming, $n)) {
          $this->name = $n[0];
          $this->label = $n[1];
-         $this->class = "cl_".sha1($image->name . $n[1]);
+         $this->class = "cl_".sha1($image->scenario->name . $n[1]);
        
        # ok, has no tag at all
        } else {
          $this->name = null;
          $this->label = null;
          # use full positionline to build class
-         $this->class = "cl_".sha1($image->name.'/'.$m[0]);
+         $this->class = "cl_".sha1($image->scenario->name.'/'.$m[0]);
        }
 
      } else {
