@@ -62,21 +62,22 @@ mogrify -resize 1366 -quality 85 *.jpg
 
 ## Locations
 
-The `locations.txt` file has the following format:
+The `locations.txt` file has the following formats:
 
 ```
-# Comment 
+# Comments begin with a # hash sign
+% 000 Scenarios are starting with %, followed by a 3 digit number, and the scenario name
+F filenames begin with "F" followed by the name without .jpg
 
-# Heading per filename, first one stating the scenario name
-% 000 Scenario Name
-F filename
+# Boxes to show:
 # Left Top Width Height Color Text
 
-# multi-page: No additional % 000 needed
+# or rotated boxes: use three coordinates, rotated clockwise
+# AX,AY BX,BY CX,CY Color Text
+
+# Multi-Page scenarios use additional F, no additional %
 F secondfile
 # Left Top Width Height Color Text
-
-
 ```
 
 Color can be stated as html color name, or in hex #1234ef.

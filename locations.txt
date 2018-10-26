@@ -7,9 +7,10 @@ F GloomhavenScenario-002
 904 245 421 207 green Folgen
 198 1593 414 170 red Gegner
 613 1593 463 166 orange Ausstattung
-784 1168 492 242 lightgray [Start-Raum]
-916 554 222 607 gray [Raum 2]
-520 632 353 459 gray [Raum 3]
+784 1168 492 242 lightgray L1a
+916 554 222 607 gray G1b
+520 632 353 459 gray I1b
+
 
 % 002 Grabhöhle
 F GloomhavenScenario-003
@@ -18,26 +19,132 @@ F GloomhavenScenario-003
 910 232 438 166 blue (1)
 970 407 360 364 red Gegner
 970 763 351 276 orange Ausstattung
-540 806 313 154 lightgray [Start-Raum]
-504 1002 392 413 gray [Raum 1]
-533 1415 326 108 gray [Raum 1]
-896 1098 65 286 gray [Raum 1]
-436 1090 68 310 gray [Raum 1]
-856 1414 71 84 gray [Raum 1]
-462 1396 72 102 gray [Raum 1]
-962 1143 356 163 gray [Raum A]
-769,1703 961,1360 1115,1446 gray [Raum B]
-267,1456 423,1371 611,1686 gray [Raum C]
-76 1139 362 162 gray [Raum D]
+540 806 313 154 lightgray B3b
+504 1002 392 413 gray M1a
+533 1415 326 108 gray [M1a]
+896 1098 65 286 gray [M1a]
+436 1090 68 310 gray [M1a]
+856 1414 71 84 gray [M1a]
+462 1396 72 102 gray [M1a]
+962 1143 356 163 gray A1a
+769,1703 961,1360 1115,1446 gray A4b
+267,1456 423,1371 611,1686 gray A2a
+76 1139 362 162 gray A3b
+
+F GloomhavenScenario-004
+36 138 428 636 green Epilog
+467 108 435 414 green Epilog
+472 521 434 280 green Folgen
+0 849 1366 967 ivory ! Szenario 3 
 
 
 % 003 Inox-Lager
+F GloomhavenScenario-004
+0 0 1366 848 ivory ! Szenario 2
+470 1132 432 207 blue (1)
+468 1437 431 325 green Epilog
+901 1087 443 684 green Epilog
+
+F GloomhavenScenario-005
+45 101 435 596 green Epilog
+486 95 440 118 green Epilog
+496 213 422 350 green Folgen
+981 141 321 261 red Gegner
+982 399 301 495 orange Ausstattung
+405 974 583 634 lightgray L3a
+426 1606 158 167 lightgray [L3a]
+800 1607 177 160 lightgray [L3a]
+670 946 56 33 lightgray [L3a]
+493 580 414 367 gray E1b
+491 943 179 32 gray [E1b]
+725 943 180 33 gray [E1b]
+88 979 318 312 gray B3a
+88 1372 318 313 gray B4a
+987 1370 321 310 gray B2a
+987 975 323 313 gray B1a
+
 
 % 004 Krypta der Verdammten
+F GloomhavenScenario-006
+25 882 439 170 blue (1)
+464 268 430 423 green Epilog
+899 239 431 259 green Epilog
+904 501 430 132 green Folgen
+130 1607 625 179 red Gegner
+768 1616 382 166 orange Ausstattung
+79 1247 424 204 lightgray E1a
+308 1060 170 190 lightgray [E1a]
+492 858 272 630 gray G1b
+763 1238 315 340 gray C1a
+762 724 506 430 gray M1a
+
 
 % 005 Unheilvolle Krypta
+F GloomhavenScenario-007
+36 1052 438 454 green Epilog
+42 1523 430 162 green Folgen
+1062 645 286 407 red Gegner
+1062 1052 277 342 orange Ausstattung
+693 721 359 573 lightgray M1a
+507 293 520 431 gray K1a
+1027 294 106 341 gray [K1a]
+505 1303 522 427 gray K2b
+1026 1413 105 316 gray [K2b]
+
 
 % 006 Faulige Krypta
+F GloomhavenScenario-008
+30 909 428 283 green Epilog
+93 1189 330 255 red Gegner
+92 1442 292 337 orange Ausstattung
+482 721 239 581 lightgray L1a
+719 1106 144 196 lightgray [L1a]
+719 720 146 196 lightgray [L1a]
+593 1301 617 471 gray K1a
+1058 1252 69 50 gray [K1a]
+590 285 615 436 gray K2b
+1057 719 73 62 gray [K2b]
+870 770 441 485 gray M1a
+
+F GloomhavenScenario-009
+49 141 435 663 green Epilog
+501 103 437 336 green Folgen
+0 848 1366 986 ivory ! Szenario 7
+
 
 % 007 Üppige Grotte
+F GloomhavenScenario-009
+0 0 1366 866 ivory ! Szenario 6
+914 1595 430 178 green Epilog
+
+F GloomhavenScenario-010
+27 119 863 359 green Epilog
+891 117 440 225 green [Epilog]
+903 344 428 101 green Folgen
+34 484 311 330 red Gegner
+38 816 277 281 orange Ausstattung
+38 1095 189 49 orange [Ausstattung]
+445 1409 542 201 lightgray M1b
+456 1344 470 67 lightgray [M1b]
+536 1245 286 102 lightgray [M1b]
+519 1607 151 63 lightgray [M1b]
+823 1608 94 65 lightgray [M1b]
+984 1410 24 86 lightgray [M1b]
+228 1098 306 246 gray C2a
+193 1185 41 91 gray [C2a]
+267 1341 187 94 gray [C2a]
+373 1076 60 23 gray [C2a]
+925 1099 406 312 gray D2b
+1008 1410 296 86 gray [D2b]
+938 1076 227 24 gray [D2b]
+938 468 225 609 gray F1b
+910 942 29 59 gray [F1b]
+327 860 584 216 gray G2a
+478 814 309 47 gray [G2a]
+485 507 299 304 gray B4b
+
+
+
+
+
 

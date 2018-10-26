@@ -52,7 +52,7 @@ Nochmal zum Mitschreiben:
 Gloomhaven unterliegt dem Copyright von Isaac Childres und Cephalofair Games, die deutsche Übersetzung gehört zu Feuerland.
 Bitte respektiert diese Copyrights, und kauft dieses großartige Spiel. Es mag zunächst teuer erscheinen, aber für über 200 Stunden Spaß ist das schon nicht mehr so viel.
 
-Aber... Wenn ihr ganz zufällig irgendwo über eine Datei namens `Gloomhaven.Scenario.Buch.Deutsche.Version.Best.Quality.pdf` stolpert, nachdem ihr das Spiel gekauft habt, könntet ihr eventuell diese Befehle ausprobiere wollen:
+Aber... Wenn ihr ganz zufällig irgendwo über eine Datei namens `Gloomhaven.Scenario.Buch.Deutsche.Version.Best.Quality.pdf` stolpert, nachdem ihr das Spiel gekauft habt, könntet ihr eventuell diese Befehle ausprobieren wollen:
 ```
 pdfimages -j Gloomhaven.Scenario.Buch.Deutsche.Version.Best.Quality.pdf GloomhavenScenario
 mogrify -resize 1366 -quality 85 *.jpg
@@ -63,16 +63,19 @@ mogrify -resize 1366 -quality 85 *.jpg
 Die `locations.txt` hat folgendes Format
 
 ```
-# Kommentare
+# Kommentare beginnen mit einer # Raute
 
-# Eine Überschrift pro Szenario mit %, dreistelliger Nummer, und einem Namen - hier könnt ihr Umlaute nutzen :)
-% 000 Scenario Name
-# Dateinamen mit F vorweg
-F filename
+% 000 Szenarios beginnen mit %, gefolgt von einer dreistelligen Nummer, und dann dem Namen - hier könnt ihr Umlaute nutzen :)
+F Dateinamen beginnen mit einem "F", gefolgt vom Dateinamen ohne .jpg
+
+# Anzuzeigende Boxen:
 # Links Oben Breite Höhe Farbe Text
 
+# Oder gedrehte Boxen: Gib drei Koordinaten an, im Uhrzeigersinn
+# AX,AY BX,BY, CX,CY Farbe Text
+
 # Mehr als eine Seite pro Szenario? Einfach noch ein F, kein neues % davor
-F secondfile
+F Zweitedatei
 # Links Oben Breite Höhe Farbe Text
 
 
