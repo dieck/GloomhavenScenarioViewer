@@ -29,11 +29,9 @@ There are 2 main files:
 - locations.txt (see below)
 
 Content needs to be placed in directory `scenes` 
-- naming schema: `000_ScenarioName.jpg`
-- or `000-2.jpg` (second and following page of multi-page scenarios)
-- The scenario name is optional, just to better sort the images. Everything following an underscore will be ignored
+- naming schema does not matter - needs to be .jpg files
 - Do not use Non-Web-Safe characters, e.g. slashes, or Umlauts
-- e.g. `001_Schwarzgrab.jpg` or `002-2.jpg`
+- e.g. `001_Schwarzgrab.jpg` or `GloomhavenScenario-001.jpg`
  
 
 ## Scanning
@@ -41,13 +39,24 @@ Content needs to be placed in directory `scenes`
 Please scan your own scenario book, or take photos, or rearrange in Paint, to your liking :)
 At least the German book is Letter format, I very much assume the English one is, too.
 
-Crop to very near around the outer border, see ![Example 1](docs/example1.jpg) and ![Example 2](docs/example2.jpg).
+Crop to very near around the outer border, see ![Example 1](docs/example1.jpg).
 
 Resize width to 1366 pixel, keeping the ratio.
 
 The `locations.txt` in this project should fit for the German edition.
 If someone sees fit to create an english one, let me know and I'll see if I'll add multi-language support :)
 
+### Lazy people
+
+Let me stress again: 
+Gloomhaven is copyrighted by Isaac Childres and Cephalofair Games, the German translation partially by Feuerland.
+Please respect their copyrights, and buy this great game. It may seem expensive at first glance, but for 200+ hours of fun, it's very resonably priced. 
+
+But... If you happen to stumble upon a file called `Gloomhaven.Scenario.Buch.Deutsche.Version.Best.Quality.pdf`, after you bought this, you might want to try these commands:
+```
+pdfimages -j Gloomhaven.Scenario.Buch.Deutsche.Version.Best.Quality.pdf GloomhavenScenario
+mogrify -resize 1366 -quality 85 *.jpg
+```
 
 ## Locations
 
@@ -58,10 +67,11 @@ The `locations.txt` file has the following format:
 
 # Heading per filename, first one stating the scenario name
 % 000 Scenario Name
+F filename
 # Left Top Width Height Color Text
 
-# multi-page: -2, -3 and so on. No name needed.
-% 000-2
+# multi-page: No additional % 000 needed
+F secondfile
 # Left Top Width Height Color Text
 
 
@@ -79,6 +89,7 @@ Specialties for Text:
 
 ```
 % 002
+F Gloomhaven-002.jpg
 12 810 449 313 blue (1)
 465 211 446 406 blue (1)
 913 217 444 172 blue (1)
