@@ -1,3 +1,5 @@
+[German version of this Readme available](README.de.md)
+
 # GloomhavenScenarioViewer
 
 This is a easy to use scenario viewer web app for Gloomhaven.
@@ -39,7 +41,7 @@ Content needs to be placed in directory `scenes`
 Please scan your own scenario book, or take photos, or rearrange in Paint, to your liking :)
 At least the German book is Letter format, I very much assume the English one is, too.
 
-Crop to very near around the outer border, see ![Example 1](docs/example1.jpg).
+Crop around the outer border, see ![Example 1](docs/example1.jpg).
 
 Resize width to 1366 pixel, keeping the ratio.
 
@@ -83,7 +85,7 @@ Specialties for Text:
 
 - Same text in multiple lines (per filename): Toggle on/off together
 - Text in \[square brackets\] is not printed out, but used for multi-line toggling, also against non-bracketed text
-
+- Starting with an exclamation mark: Marking can not be disabled. (Useful to mask multiple scenarios on one page)
 
 ### Example
 

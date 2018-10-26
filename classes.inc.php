@@ -274,8 +274,14 @@ class Position {
 
        $naming = $m[6];
 
+       # look for hard mask
+       if (preg_match('/^\!\s+?(.*)?$/', $naming, $n)) {
+         $this->name = '!';
+         $this->label = $n[1];
+         $this->class = "cl_".sha1($image->name.'/'.$m[0]);
+         
        # look for invisible tags
-       if (preg_match('/^\[(.*?)\]$/', $naming, $n)) {
+       } else if (preg_match('/^\[(.*?)\]$/', $naming, $n)) {
          $this->name = $n[0];
          $this->label = null;
          $this->class = "cl_".sha1($image->name . $n[1]);
@@ -304,7 +310,14 @@ class Position {
   public function toHTML() {
     $h = "";
     $h .= '<div class="step" id="'.$this->id.'">';
-    $h .= '<div class="stepi '.$this->class.'" id="'.$this->id.'_i" onClick="toggleHide(this, \''.$this->class.'\');">'."\n";
+    $h .= '<div class="stepi '.$this->class.'" id="'.$this->id.'_i" ';
+
+    if ($this->name != '!') {    
+      # ! can not be toggled: used to mask unused scenarios
+      $h .= 'onClick="toggleHide(this, \''.$this->class.'\');"';
+    }
+
+    $h .= '>'."\n";
     $h .= '<p>'.htmlentities($this->label).'</p>'."\n";
     $h .= '</div></div>'."\n";
     return $h;
