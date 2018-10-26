@@ -26,12 +26,8 @@ F GloomhavenScenario-003
 856 1414 71 84 gray [Raum 1]
 462 1396 72 102 gray [Raum 1]
 962 1143 356 163 gray [Raum A]
-927 1382 198 412 gray [Raum B]
-858 1498 70 293 gray [Raum B]
-762 1522 96 267 gray [Raum B]
-264 1399 198 396 gray [Raum C]
-462 1496 71 298 gray [Raum C]
-529 1523 106 270 gray [Raum C]
+769,1703 961,1360 1115,1446 gray [Raum B]
+267,1456 423,1371 611,1686 gray [Raum C]
 76 1139 362 162 gray [Raum D]
 
 

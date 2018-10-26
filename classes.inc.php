@@ -65,6 +65,11 @@ class Scenario {
     foreach ($locations as $line) {
       $line = trim($line);
 
+      if (preg_match('/^#/', $line)) {
+        # ignore comments
+        continue;
+      }
+
       # checking for "end tag" before possible find of start: would override in_tag otherwise
       if (preg_match('/^%\ /', $line)) {
         # assume we are no longer in "our" tag. If we were not before, doesn't matter.
@@ -221,7 +226,11 @@ class Positions {
   public function __construct($image, $positionlines) {
     foreach ($positionlines as $positionline) {
       if (preg_match('/^(\d+)\s(\d+)\s(\d+)\s(\d+)\s(#?\w+)\s?(.*)$/', $positionline)) {
-        $position = new Position($image, $positionline);
+        $position = new RectPosition($image, $positionline);
+        $this->positions[] = $position;
+      }
+      if (preg_match('/^(\d+),(\d+)\s(\d+),(\d+)\s(\d+),(\d+)\s(#?\w+)\s?(.*)$/', $positionline)) {
+        $position = new RotatedPosition($image, $positionline);
         $this->positions[] = $position;
       }
     }
@@ -246,7 +255,7 @@ class Positions {
 } // class Positions
 
 
-class Position {
+class RectPosition {
 
   public $id;
   public $class;
@@ -326,6 +335,130 @@ class Position {
   public function toCSS() {
     $c = "";
     $c .= '#'.$this->id.' { left: '.$this->left.'; top: '.$this->top.'; width: '.$this->width.'; height: '.$this->height.'; }'."\n";
+    $c .= '#'.$this->id.'_i { width: '.$this->width.'; height: '.$this->height.'; background-color: '.$this->color.'; }'."\n";
+    return $c;
+  }
+
+} // class Position
+
+
+class RotatedPosition {
+# Rotation? Yes, Rotation. I have troubles getting polygon shapes to work ;)
+
+  public $id;
+  public $class;
+
+  private $ax; private $ay;
+  private $bx; private $by;
+  private $cx; private $cy;
+
+  public $color;
+  public $name;
+  public $label;
+  public $rotation;
+  
+  private $mx; private $my;
+  private $left;  private $top;
+  private $width; private $height;
+  
+  private $image;
+
+
+  public function __construct($image, $positionline) {
+  
+    $this->image = $image;
+
+    if (preg_match('/^(\d+),(\d+)\s(\d+),(\d+)\s(\d+),(\d+)\s(#?\w+)\s?(.*)$/', $positionline, $m)) {
+    
+       $this->id = "id_".sha1($image->name.'/'.$m[0]);
+       
+       $this->ax = $m[1]; $this->ay = $m[2];
+       $this->bx = $m[3]; $this->by = $m[4];
+       $this->cx = $m[5]; $this->cy = $m[6];
+       
+       $this->color = $m[7];
+
+       $naming = $m[8];
+
+       # look for hard mask
+       if (preg_match('/^\!\s+?(.*)?$/', $naming, $n)) {
+         $this->name = '!';
+         $this->label = $n[1];
+         $this->class = "cl_".sha1($image->name.'/'.$m[0]);
+         
+       # look for invisible tags
+       } else if (preg_match('/^\[(.*?)\]$/', $naming, $n)) {
+         $this->name = $n[0];
+         $this->label = null;
+         $this->class = "cl_".sha1($image->name . $n[1]);
+
+       # look for normal tags
+       } else if (preg_match('/^(.*)$/', $naming, $n)) {
+         $this->name = $n[0];
+         $this->label = $n[1];
+         $this->class = "cl_".sha1($image->name . $n[1]);
+       
+       # ok, has no tag at all
+       } else {
+         $this->name = null;
+         $this->label = null;
+         # use full positionline to build class
+         $this->class = "cl_".sha1($image->name.'/'.$m[0]);
+       }
+
+     } else {
+  
+       throw new Exception('Position format error: ' . htmlentities($positionline));
+     }
+
+     $this->math();
+
+  }
+
+  private function math() {
+    $tanAlpha = ($this->bx - $this->ax) / ($this->ay - $this->by);
+    $atan = atan($tanAlpha);
+    $deg = round(rad2deg($atan) - 90);
+    
+    $this->rotation = $deg;
+    
+    $mx = abs($this->cx - $this->ax)/2 + min($this->ax, $this->cx);
+    $my = abs($this->cy - $this->ay)/2 + min($this->ay, $this->cy);
+
+    $AB = round( sqrt( pow(($this->bx - $this->ax),2) + pow(($this->by - $this->ay),2)  ) );
+    $BC = round( sqrt( pow(($this->cx - $this->bx),2) + pow(($this->cy - $this->by),2)  ) );
+
+    $this->left = round($mx - $AB/2);
+    $this->top = round($my - $BC/2);
+    $this->width = $AB;
+    $this->height = $BC;
+  }
+
+  public function toHTML() {
+    $h = "";
+    $h .= '<div class="step" id="'.$this->id.'">';
+    $h .= '<div class="stepi '.$this->class.'" id="'.$this->id.'_i" ';
+
+    if ($this->name != '!') {    
+      # ! can not be toggled: used to mask unused scenarios
+      $h .= 'onClick="toggleHide(this, \''.$this->class.'\');"';
+    }
+
+    $h .= '>'."\n";
+    $h .= '<p>'.htmlentities($this->label).'</p>'."\n";
+    $h .= '</div></div>'."\n";
+    return $h;
+  }
+
+  public function toCSS() {
+    $c = "";
+    $c .= '#'.$this->id.' { left: '.$this->left.'; top: '.$this->top.'; width: '.$this->width.'; height: '.$this->height.'; ';
+    $c .= 'moz-transform: rotate('.$this->rotation.'deg); ';
+    $c .= '-ms-transform: rotate('.$this->rotation.'deg); ';
+    $c .= '-o-transform: rotate('.$this->rotation.'deg); '; 
+    $c .= '-webkit-transform: rotate('.$this->rotation.'deg); ';
+    $c .= 'transform: rotate('.$this->rotation.'deg); ';
+    $c .= '}'."\n";
     $c .= '#'.$this->id.'_i { width: '.$this->width.'; height: '.$this->height.'; background-color: '.$this->color.'; }'."\n";
     return $c;
   }
