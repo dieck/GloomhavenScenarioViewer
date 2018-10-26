@@ -1,21 +1,20 @@
-<?php require_once("common.inc.php");
+<?php 
+  
+  require_once("classes.inc.php");
 
   if (!$_REQUEST['scene']) {
     header("Location: scene.php");
     die('<a href="scene.php">Set Scenario</a>');
   } else {
-    $sceneerror = existsScene($_REQUEST['scene']);
-    if ($sceneerror) {
-      header("Location: scene.php");
-      die('<a href="scene.php">Set Scenario</a>');
-    }
+  
+    $Scenario = new Scenario($_REQUEST['scene']);
+    
   }
 ?>
 <html>
 
 <head>
-  <title>Gloomhaven Scenario Viewer</title>
-
+  <title>Gloomhaven Scenario Viewer - <?=$Scenario->name();?></title>
 <style>
 
 .container {
@@ -48,44 +47,8 @@
 </style>
 
 <?php
-
-  $images = findImages($_REQUEST['scene']);
-
-  print '<style>'."\n";
-  
-  foreach ($images as $id => $imgfile) {
-
-   // # Left Top Width Height Color Shown Text
-   // 50 50 200 150 red Step 1
-
-   $positions = findOverlays($id);
-   foreach ($positions as $pos) {
-     $pos = trim($pos);
-     // ignored # lines
-     if (substr($pos, 0, 1) == '#') continue;
-     
-     if (preg_match('/^(\d+)\s(\d+)\s(\d+)\s(\d+)\s(#?\w+)\s?(.*)$/', $pos, $m)) {
-       $id = "id_".sha1($page.'/'.$m[0]);
-       $left = $m[1];
-       $top = $m[2];
-       $width = $m[3];
-       $height = $m[4];
-       $color = $m[5];
-       $name = $m[6];
-
-       print '#'.$id.' { left: '.$left.'; top: '.$top.'; width: '.$width.'; height: '.$height.'; }'."\n";
-       print '#'.$id.'_i { width: '.$width.'; height: '.$height.'; background-color: '.$color.'; }'."\n";
-
-     }
-     
-   } // foreach $pos
-   
-   } // foreach $page
-
-   print '</style>'."\n";
-
+  print $Scenario->toCSS();
 ?>
-
 
 <script>
 function toggleHide(e, cl) {
@@ -122,64 +85,12 @@ function toggleHide(e, cl) {
 <body>
 
 <div class="heading">
-<?php
-      print '<h1>GH</h1>'."\n";
-?>
+<h1><?=$Scenario->name();?></h1>
 <a href="scene.php">Anderes Szenario</a> 
 </div>
 
 <?php
-  $images = findImages($_REQUEST['scene']);
- 
-  foreach ($images as $id => $line) {
-    
-    print '<div class="container">'."\n";
-
-    $imgfile = findFilename($id);
-
-    print '<img src="scenes/'.$imgfile.'" width="1366" style="z-index: 0;" />'."\n";
-   
-   // # Left Top Width Height Color Shown Text
-   // 50 50 200 150 red Step 1
-
-   $positions = findOverlays($id);
-   foreach ($positions as $pos) {
-     $pos = trim($pos);
-     // ignored # lines
-     if (substr($pos, 0, 1) == '#') continue;
-     
-     if (preg_match('/^(\d+)\s(\d+)\s(\d+)\s(\d+)\s(#?\w+)\s?(.*)$/', $pos, $m)) {
-       $id = "id_".sha1($page.'/'.$m[0]);
-       $left = $m[1];
-       $top = $m[2];
-       $width = $m[3];
-       $height = $m[4];
-       $color = $m[5];
-       $name = $m[6];
-
-       if ($name != "") {
-         preg_match('/^\[?(.*?)\]?$/', $name, $n);
-         $cl = "cl_".sha1($page . $n[1]);
-       } else {
-         $cl = "cl_".sha1($page.'/'.$m[0]);
-       }
-
-       print '<div class="step" id="'.$id.'"><div class="stepi '.$cl.'" id="'.$id.'_i" onClick="toggleHide(this, \''.$cl.'\');">'."\n";
-       print '<p>';
-       $showName = preg_replace('/\[.*?\]/', null, $name);
-       print htmlentities($showName);
-       print '</p>'."\n";
-       print '</div></div>'."\n";
-     }
-     
-   } // foreach $pos
-   
-   print '</div>'."\n";
-
-   print '<hr/>'."\n";
-   
-  } // foreach $page
-
+  print $Scenario->toHTML();
 ?>
 
 </body>

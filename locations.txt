@@ -1,121 +1,47 @@
 # Left Top Width Height Color TEXT
 
 % 001 Schwarzgrab
-10 1299 454 259 blue (1)
-463 256 454 199 green Epilog
-923 216 433 233 green Folgen
-183 1606 438 218 red Gegner
-625 1606 489 202 orange Ausstattung
-881 521 320 646 gray [Raum 2]
-768 1169 566 419 lightgray Start-Raum
-507 603 389 507 gray [Raum 3]
+F GloomhavenScenario-002
+29 1293 435 234 blue (1)
+463 278 433 185 green Epilog
+904 245 421 207 green Folgen
+198 1593 414 170 red Gegner
+613 1593 463 166 orange Ausstattung
+784 1168 492 242 lightgray [Start-Raum]
+916 554 222 607 gray [Raum 2]
+520 632 353 459 gray [Raum 3]
 
 % 002 Grabhöhle
-12 810 449 313 blue (1)
-465 211 446 406 blue (1)
-913 217 444 172 blue (1)
-947 389 408 373 red Gegner
-951 772 393 293 orange Ausstattung
-520 633 349 387 lightgray Start-Raum
-459 1009 480 144 gray [Raum 2]
-430 1153 533 256 gray [Raum 2]
-455 1409 477 142 gray [Raum 2]
-956 1135 383 218 gray [Raum A]
-927 1398 207 440 gray [Raum B]
-846 1517 83 326 gray [Raum B]
-747 1568 102 272 gray [Raum B]
-244 1380 214 460 gray [Raum C]
-456 1520 81 320 gray [Raum C]
-534 1566 100 275 gray [Raum C]
-50 1137 389 214 gray [Raum D]
-
-% 002-2
-14 119 441 666 green Epilog
-462 91 451 434 green Epilog
-469 529 442 281 green Folgen
+F GloomhavenScenario-003
+43 797 431 306 blue (1)
+484 232 427 385 blue (1)
+910 232 438 166 blue (1)
+970 407 360 364 red Gegner
+970 763 351 276 orange Ausstattung
+540 806 313 154 lightgray [Start-Raum]
+504 1002 392 413 gray [Raum 1]
+533 1415 326 108 gray [Raum 1]
+896 1098 65 286 gray [Raum 1]
+436 1090 68 310 gray [Raum 1]
+856 1414 71 84 gray [Raum 1]
+462 1396 72 102 gray [Raum 1]
+962 1143 356 163 gray [Raum A]
+927 1382 198 412 gray [Raum B]
+858 1498 70 293 gray [Raum B]
+762 1522 96 267 gray [Raum B]
+264 1399 198 396 gray [Raum C]
+462 1496 71 298 gray [Raum C]
+529 1523 106 270 gray [Raum C]
+76 1139 362 162 gray [Raum D]
 
 
 % 003 Inox-Lager
-458 292 451 227 blue (1)
-459 605 444 344 green Epilog
-913 243 444 704 green Epilog
-
-% 003-2
-25 77 447 620 green Epilog
-479 75 452 113 green Epilog
-490 197 434 359 green Folgen
-994 121 294 270 red Gegner
-991 380 302 528 orange Ausstattung
-412 976 569 822 lightgray Start-Raum
-666 946 61 68 lightgray [Start-Raum]
-958 1108 49 70 lightgray [Start-Raum]
-390 1110 60 65 lightgray [Start-Raum]
-396 1516 53 70 lightgray [Start-Raum]
-953 1517 56 65 lightgray [Start-Raum]
-50 1379 358 344 gray [Raum LU]
-990 1369 350 347 gray [Raum RU]
-64 979 349 344 gray [Raum LO]
-989 972 349 337 gray [Raum RO]
-482 570 188 410 gray [Raum O]
-723 570 188 410 gray [Raum O]
-651 570 90 371 gray [Raum O]
 
 % 004 Krypta der Verdammten
-19 887 444 168 blue (1)
-467 255 444 428 green Epilog
-915 230 447 261 green Epilog
-919 498 436 128 green Folgen
-59 1065 438 428 lightgray Start-Raum
-501 853 270 662 gray [Raum M]
-764 705 559 489 gray [Raum RO]
-773 1230 350 380 gray [Raum RU]
-114 1631 643 189 red Gegner
-769 1638 422 181 orange Ausstattung
-
 
 % 005 Unheilvolle Krypta
-21 1061 446 465 green Epilog
-27 1540 440 162 green Folgen
-1062 623 296 428 red Gegner
-1065 1049 276 350 orange Ausstattung
-568 713 491 597 lightgray Start-Raum
-472 259 571 455 gray [Raum O]
-1043 255 128 343 gray [Raum O]
-482 1314 543 470 gray [Raum U]
-1001 1421 171 360 gray [Raum U]
 
 % 006 Faulige Krypta
-17 924 450 282 green Epilog
-49 1213 377 267 red Gegner
-46 1471 346 350 orange Ausstattung
-472 723 417 611 lightgray Start-Raum
-888 723 465 611 gray [Raum R]
-581 1305 684 488 gray [Raum U]
-579 273 671 476 gray [Raum O]
-
-% 006-2
-19 111 456 692 green Epilog
-488 72 450 352 green Folgen
 
 % 007 Üppige Grotte
-910 753 452 186 green Epilog
 
-% 007-2
-8 90 900 374 green Epilog
-915 89 444 236 green Epilog
-915 330 445 99 green Folgen
-17 469 314 351 red Gegner
-18 821 290 288 orange Ausstattung
-17 1109 190 56 orange [Ausstattung]
-558 1264 375 576 lightgray Start-Raum
-924 1443 97 275 lightgray [Start-Raum]
-460 1370 102 358 lightgray [Start-Raum]
-439 1380 27 291 lightgray [Start-Raum]
-226 1100 331 272 gray [Raum L]
-145 1141 86 235 gray [Raum L]
-227 1366 233 113 gray [Raum L]
-933 1104 433 340 gray [Raum R]
-1021 1442 335 110 gray [Raum R]
-934 436 254 674 gray [Raum RO]
-314 840 638 272 gray [Raum LM]
-473 481 341 362 gray [Raum LO]
