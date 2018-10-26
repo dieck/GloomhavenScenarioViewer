@@ -144,6 +144,47 @@ F GloomhavenScenario-010
 485 507 299 304 gray B4b
 
 
+% 008 Lagerhaus von Gloomhaven
+F GloomhavenScenario-011
+37 693 434 409 blue (1)
+477 237 425 465 green Epilog
+904 236 436 93 green [Epilog]
+908 329 428 356 green Folgen
+158 1121 341 264 red Gegner
+159 1376 368 380 orange Ausstattung
+710 1345 469 263 lightgray I1a
+712 952 464 394 gray I2b
+638 715 601 237 gray G2b
+
+
+% 009 Diamentenmine
+F GloomhavenScenario-012
+29 711 439 594 blue (1)
+462 238 435 563 green Epilog
+896 274 434 76 green [Epilog]
+895 396 439 358 green Folgen
+67 1320 376 209 red Gegner
+116 1529 430 178 orange Ausstattung
+445 1333 158 183 orange [Ausstattung]
+768 1334 426 267 lightgray I2a
+654 834 626 501 gray N1a
+
+
+% 010 Ebene der Elementarmächte
+F GloomhavenScenario-013
+906 230 435 940 green Epilog
+907 1170 427 234 green Folgen
+742 1426 370 172 red Gegner
+798 1605 408 173 orange Ausstattung
+1129 1423 118 161 orange [Ausstattung]
+382 560 272 240 lightgray D1b
+382 798 160 75 lightgray [D1b]
+382 469 91 92 lightgray [D1b]
+466 515 74 47 lightgray [D1b]
+654 560 223 615 gray G1a
+598 1064 58 65 gray [G1a]
+98 935 511 792 gray L1b + L3a
+
 
 
 
