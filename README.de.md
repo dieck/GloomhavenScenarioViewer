@@ -39,7 +39,8 @@ Hier kommt die Arbeit. Bitte scannt euer Szenarien-Buch ein, oder macht Photos, 
 
 Das deutsche Szenarien-Buch hat übrigens "Letter"-Format, für die Scanneinstellung. Ich vermute mal, das englische auch.
 
-Also, die ganze Seite scannen, und ggf. die Ränder etwas anpassen, so dass sie so aussehen wie auf dem ![Beispiel](docs/example1.jpg).
+Also, die ganze Seite scannen, und ggf. die Ränder etwas anpassen, so dass sie so aussehen wie auf dem Beispiel:
+![Beispiel](docs/example1.jpg).
 
 Dann das ganze auf 1366 Pixel BREITE resizen, dabei das Seitenverhältnis beibehalten.
 
@@ -87,6 +88,7 @@ Spezialitäten zum Text:
 
 - Wenn derselbe Text in mehreren Zeilen steht, werden diese Markierungen zusammen an- und abgeschaltet
 - Text in \[eckigen Klammern\] wird nicht angezeigt, aber für o.g. zusammen genutzte Markierung verwendet
+- Text in \{geschweiften Klammern\} wird nicht angezeigt, und wird für eine andere Markierung verwendet, z.B. eine Zahl auf einer Tür schaltet den Abschnitt im Text frei. Dies kann mit normalen Elementen kombiniert werden, und muss am Ende des Textes stehen.
 - Beginnt mit einem Ausrufezeichen: Markierung ist nicht ausblendbar (Nützlich als Maske für zwei Szenarien auf einer Seite)
 
 ### Example

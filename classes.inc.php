@@ -6,10 +6,10 @@
 class Scenario {
 
   /** scenario id */
-  private $s;
+  protected $s;
   
   /** part of location.txt */
-  private $locations = array();
+  protected $locations = array();
 
   /** name of scenario */
   public $name;
@@ -34,7 +34,7 @@ class Scenario {
    * validate scene id 
    * @return boolean validation result
    */
-  function validateScenarioID($s) {
+  protected function validateScenarioID($s) {
     # Check for format (three digit naming)
     if (!preg_match('/^\d\d\d$/', $s)) return true;
     
@@ -49,7 +49,7 @@ class Scenario {
    * @param string $s three-digit scenario id (assume validated)
    * @return all lines from % start tag for $s to next start tag (or eof)
    */
-  function readLocations() {
+  protected function readLocations() {
 
     # check for file existence
     if (!file_exists('locations.txt')) {
@@ -97,7 +97,7 @@ class Scenario {
   /**
    * parse part of locations.txt for images
    */
-  function parseImages() {
+  protected function parseImages() {
 
     $imagename = null;
     $locations = array();
@@ -180,10 +180,10 @@ class Image {
   public $scenario;
   
   /** part of locations.txt */
-  private $locations;
+  protected $locations;
 
   /** parsed parts to render */
-  public $positions;
+  protected $positions;
   
   public function __construct($scenario, $imagename, $locations) {
     $this->scenario = $scenario;
@@ -197,7 +197,7 @@ class Image {
     $this->parsePositions();
   }  
 
-  function parsePositions() {
+  protected function parsePositions() {
     $this->positions = new Positions($this, $this->locations);
   }
 
@@ -221,7 +221,7 @@ class Image {
 
 
 class Positions {
-  public $positions = array();
+  protected $positions = array();
 
   public function __construct($image, $positionlines) {
     foreach ($positionlines as $positionline) {
@@ -254,66 +254,59 @@ class Positions {
   
 } // class Positions
 
+class Position {
 
-class RectPosition {
-
-  public $id;
-  public $class;
-  public $left;
-  public $top;
-  public $width;
-  public $height;
-  public $color;
-  public $name;
-  public $label;
+  protected $id;
+  protected $class;
+  protected $class2;
+  protected $left;
+  protected $top;
+  protected $width;
+  protected $height;
+  protected $color;
+  protected $name;
+  protected $label;
   
-  private $image;
+  protected $image;
 
-  public function __construct($image, $positionline) {
-  
+  public function __construct($image) {
     $this->image = $image;
+  }
 
-    if (preg_match('/^(\d+)\s(\d+)\s(\d+)\s(\d+)\s(#?\w+)\s?(.*)$/', $positionline, $m)) {
-       $this->id = "id_".sha1($image->name.'/'.$m[0]);
-       $this->left = $m[1];
-       $this->top = $m[2];
-       $this->width = $m[3];
-       $this->height = $m[4];
-       $this->color = $m[5];
-
-       $naming = $m[6];
-
-       # look for hard mask
-       if (preg_match('/^\!\s+?(.*)?$/', $naming, $n)) {
-         $this->name = '!';
-         $this->label = $n[1];
-         $this->class = "cl_".sha1($image->name.'/'.$m[0]);
-         
-       # look for invisible tags
-       } else if (preg_match('/^\[(.*?)\]$/', $naming, $n)) {
-         $this->name = $n[0];
-         $this->label = null;
-         $this->class = "cl_".sha1($image->scenario->name . $n[1]);
-
-       # look for normal tags
-       } else if (preg_match('/^(.*)$/', $naming, $n)) {
-         $this->name = $n[0];
-         $this->label = $n[1];
-         $this->class = "cl_".sha1($image->scenario->name . $n[1]);
-       
-       # ok, has no tag at all
-       } else {
-         $this->name = null;
-         $this->label = null;
-         # use full positionline to build class
-         $this->class = "cl_".sha1($image->scenario->name.'/'.$m[0]);
-       }
-
-     } else {
+  protected function setNameLabelClass($naming, $line) {
   
-       throw new Exception('Position format error: ' . htmlentities($positionline));
-     }
+    # look for secondary toggle:
+    if (preg_match('/\{(.*?)\}$/', $naming, $n)) {
+      $this->class2 = "cl_".sha1($this->image->scenario->name . $n[1]);
+      // remove curly part from further handling
+      $naming = trim(substr($naming, 0, -(strlen($n[1])+2)));
+    }
+  
+    # look for hard mask
+    if (preg_match('/^\!\s+?(.*)?$/', $naming, $n)) {
+      $this->name = '!';
+      $this->label = $n[1];
+      $this->class = "cl_".sha1($this->image->name.'/'.$line);
+      
+    # no hard mask? look for invisible tags
+    } else if (preg_match('/^\[(.*?)\]$/', $naming, $n)) {
+      $this->name = $n[0];
+      $this->label = null;
+      $this->class = "cl_".sha1($this->image->scenario->name . $n[1]);
 
+    # no invisible tags? look for normal tags
+    } else if (preg_match('/^(.*)$/', $naming, $n)) {
+      $this->name = $n[0];
+      $this->label = $n[1];
+      $this->class = "cl_".sha1($this->image->scenario->name . $n[1]);
+       
+    # ok, has no tag at all
+    } else {
+      $this->name = null;
+      $this->label = null;
+      # use full positionline to build class
+      $this->class = "cl_".sha1($this->image->scenario->name.'/'.$m[0]);
+    }
   }
 
   public function toHTML() {
@@ -323,7 +316,16 @@ class RectPosition {
 
     if ($this->name != '!') {    
       # ! can not be toggled: used to mask unused scenarios
-      $h .= 'onClick="toggleHide(this, \''.$this->class.'\');"';
+      $h .= 'onClick="toggleHide(this, \''.$this->class.'\'';
+
+
+# TODO: Doesn't work as expected: Should only work if number is VISIBLE, and then don't toggle the number (and adjacent map tiles, possibly) to be invisible again...
+# That would be a harsh task in javascript
+      if ($this->class2) {
+        $h .= ',\''.$this->class2.'\'';
+      }
+
+      $h .= ');"';
     }
 
     $h .= '>'."\n";
@@ -333,81 +335,74 @@ class RectPosition {
   }
 
   public function toCSS() {
-    $c = "";
-    $c .= '#'.$this->id.' { left: '.$this->left.'; top: '.$this->top.'; width: '.$this->width.'; height: '.$this->height.'; }'."\n";
-    $c .= '#'.$this->id.'_i { width: '.$this->width.'; height: '.$this->height.'; background-color: '.$this->color.'; }'."\n";
+    $c = "/* needs to be redefined in sub class */\n";
     return $c;
   }
 
 } // class Position
 
 
-class RotatedPosition {
-# Rotation? Yes, Rotation. I have troubles getting polygon shapes to work ;)
-
-  public $id;
-  public $class;
-
-  private $ax; private $ay;
-  private $bx; private $by;
-  private $cx; private $cy;
-
-  public $color;
-  public $name;
-  public $label;
-  public $rotation;
-  
-  private $mx; private $my;
-  private $left;  private $top;
-  private $width; private $height;
-  
-  private $image;
-
+class RectPosition extends Position {
 
   public function __construct($image, $positionline) {
+    parent::__construct($image);
   
-    $this->image = $image;
+    if (preg_match('/^(\d+)\s(\d+)\s(\d+)\s(\d+)\s(#?\w+)\s?(.*)$/', $positionline, $m)) {
+      $this->id = "id_".sha1($image->name.'/'.$m[0]);
+       
+      $this->left = $m[1];
+      $this->top = $m[2];
+      $this->width = $m[3];
+      $this->height = $m[4];
+      $this->color = $m[5];
+
+      $naming = $m[6];
+      $this->setNameLabelClass($naming, $m[0]);
+
+     } else {
+       throw new Exception('Position format error: ' . htmlentities($positionline));
+     }
+
+  }
+
+  public function toCSS() {
+    $c = "";
+    $c .= '#'.$this->id.' { left: '.$this->left.'; top: '.$this->top.'; width: '.$this->width.'; height: '.$this->height.'; }'."\n";
+    $c .= '#'.$this->id.'_i { width: '.$this->width.'; height: '.$this->height.'; background-color: '.$this->color.'; }'."\n";
+    return $c;
+  }
+
+} // class RectPosition
+
+
+class RotatedPosition extends Position {
+  # Rotation? Yes, Rotation. I have troubles getting polygon shapes to work ;)
+
+  protected $ax; protected $ay;
+  protected $bx; protected $by;
+  protected $cx; protected $cy;
+  protected $mx; protected $my;
+
+  protected $rotation;
+  
+
+  public function __construct($image, $positionline) {
+    parent::__construct($image);
 
     if (preg_match('/^(\d+),(\d+)\s(\d+),(\d+)\s(\d+),(\d+)\s(#?\w+)\s?(.*)$/', $positionline, $m)) {
     
-       $this->id = "id_".sha1($image->name.'/'.$m[0]);
+      $this->id = "id_".sha1($image->name.'/'.$m[0]);
+      
+      $this->ax = $m[1]; $this->ay = $m[2];
+      $this->bx = $m[3]; $this->by = $m[4];
+      $this->cx = $m[5]; $this->cy = $m[6];
        
-       $this->ax = $m[1]; $this->ay = $m[2];
-       $this->bx = $m[3]; $this->by = $m[4];
-       $this->cx = $m[5]; $this->cy = $m[6];
-       
-       $this->color = $m[7];
+      $this->color = $m[7];
 
-       $naming = $m[8];
-
-       # look for hard mask
-       if (preg_match('/^\!\s+?(.*)?$/', $naming, $n)) {
-         $this->name = '!';
-         $this->label = $n[1];
-         $this->class = "cl_".sha1($image->scenario->name.'/'.$m[0]);
-         
-       # look for invisible tags
-       } else if (preg_match('/^\[(.*?)\]$/', $naming, $n)) {
-         $this->name = $n[0];
-         $this->label = null;
-         $this->class = "cl_".sha1($image->scenario->name . $n[1]);
-
-       # look for normal tags
-       } else if (preg_match('/^(.*)$/', $naming, $n)) {
-         $this->name = $n[0];
-         $this->label = $n[1];
-         $this->class = "cl_".sha1($image->scenario->name . $n[1]);
-       
-       # ok, has no tag at all
-       } else {
-         $this->name = null;
-         $this->label = null;
-         # use full positionline to build class
-         $this->class = "cl_".sha1($image->scenario->name.'/'.$m[0]);
-       }
+      $naming = $m[8];
+      $this->setNameLabelClass($naming, $m[0]);
 
      } else {
-  
        throw new Exception('Position format error: ' . htmlentities($positionline));
      }
 
@@ -415,7 +410,7 @@ class RotatedPosition {
 
   }
 
-  private function math() {
+  protected function math() {
     $tanAlpha = ($this->bx - $this->ax) / ($this->ay - $this->by);
     $atan = atan($tanAlpha);
     $deg = round(rad2deg($atan) - 90);
@@ -434,22 +429,6 @@ class RotatedPosition {
     $this->height = $BC;
   }
 
-  public function toHTML() {
-    $h = "";
-    $h .= '<div class="step" id="'.$this->id.'">';
-    $h .= '<div class="stepi '.$this->class.'" id="'.$this->id.'_i" ';
-
-    if ($this->name != '!') {    
-      # ! can not be toggled: used to mask unused scenarios
-      $h .= 'onClick="toggleHide(this, \''.$this->class.'\');"';
-    }
-
-    $h .= '>'."\n";
-    $h .= '<p>'.htmlentities($this->label).'</p>'."\n";
-    $h .= '</div></div>'."\n";
-    return $h;
-  }
-
   public function toCSS() {
     $c = "";
     $c .= '#'.$this->id.' { left: '.$this->left.'; top: '.$this->top.'; width: '.$this->width.'; height: '.$this->height.'; ';
@@ -463,6 +442,6 @@ class RotatedPosition {
     return $c;
   }
 
-} // class Position
+} // class RotatedPosition
 
 ?>

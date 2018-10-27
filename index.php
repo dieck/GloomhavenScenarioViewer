@@ -51,7 +51,7 @@
 ?>
 
 <script>
-function toggleHide(e, cl) {
+function toggleHide(e, cl, cl2) {
   p = e.parentElement;
   o = e.style.opacity;
   
@@ -66,6 +66,16 @@ function toggleHide(e, cl) {
         cles[i].parentElement.style.borderStyle = "dotted";
     } 
     
+    // second class to show: Marker clicks to show Text
+    if (typeof cl2 !== "undefined") {
+      var cles = document.getElementsByClassName(cl2);
+      for (var i = 0; i < cles.length; i++) {
+          cles[i].style.opacity = 0;
+          cles[i].parentElement.style.borderStyle = "dotted";
+      } 
+    }
+    
+    
   } else {
     e.style.opacity = 1;
     p.style.borderStyle = "none";
@@ -77,6 +87,14 @@ function toggleHide(e, cl) {
         cles[i].parentElement.style.borderStyle = "none";
     } 
 
+    // second class to show: Marker clicks to show Text
+    if (typeof cl2 !== "undefined") {
+      var cles = document.getElementsByClassName(cl2);
+      for (var i = 0; i < cles.length; i++) {
+          cles[i].style.opacity = 1;
+          cles[i].parentElement.style.borderStyle = "none";
+      } 
+    }
   }
   
 }

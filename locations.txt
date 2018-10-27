@@ -20,6 +20,7 @@ F GloomhavenScenario-003
 970 407 360 364 red Gegner
 970 763 351 276 orange Ausstattung
 540 806 313 154 lightgray B3b
+661 958 74 47 lightgray [B3b] {(1)}
 504 1002 392 413 gray M1a
 533 1415 326 108 gray [M1a]
 896 1098 65 286 gray [M1a]
