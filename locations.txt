@@ -186,6 +186,30 @@ F GloomhavenScenario-013
 98 935 511 792 gray L1b + L3a
 
 
+% 011 Gloomhaven-Platz A
+F GloomhavenScenario-014
+671 895 655 178 red Gegner
+740 1081 583 175 orange Ausstattung
+789 1313 261 427 lightgray D1a
+264 1209 521 550 gray H1b
+298 1179 66 47 gray [H1b]
+66 424 526 757 gray L2b + L1a
+66 1179 233 32 gray [L2b + L1a]
+363 1179 225 30 gray [L2b + L1a]
+589 547 39 62 gray [L2b + L1a]
+627 464 365 388 gray E1a
+
+F GloomhavenScenario-015
+0 829 1366 981 ivory ! Szenario 12
+30 668 439 123 blue (1)
+473 85 432 93 blue [(1)]
+475 177 436 621 green Epilog
+910 82 430 65 green [Epilog]
+906 184 436 489 green Folgen
+
+
+
+
 
 
 
