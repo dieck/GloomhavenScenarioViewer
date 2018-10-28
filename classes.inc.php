@@ -416,22 +416,40 @@ class RotatedPosition {
   }
 
   private function math() {
+    # uuh, math. WTF, why?
+    # because I want rotated blockers, and I cannot get then hang of CSS Polygons - for now
+    
+    # Let's assume I have three Points: A, B, C
+    # That should make up a rotated rectangular box (missing D, but that's ok, will be calculated)
+    
+    # Prerequisite/Assumption: A, B and C are noted clockwise (with D as 4th)
+    # => Line AB is in 90° angle line BC
+    # => A and C are opposite
+
+    # get Rotation - using A and B, I can use the right angle on the coordinate system, to find angle of the rotation
+    # I assumed A being "top left", B being "top right", but tilted to the left, so A is "lower" then B.
+    # That is where the -90 comes from - but it works well in other constellations.
+    # I assume I could have used sin or cos and give up the -90, but I didn't feel like brushing up my 10th grade math :)
     $tanAlpha = ($this->bx - $this->ax) / ($this->ay - $this->by);
     $atan = atan($tanAlpha);
     $deg = round(rad2deg($atan) - 90);
     
-    $this->rotation = $deg;
-    
+    # So, now to find the center point ("mid") to rotate on
+    # As A and C are opposites, this is halfway between them on both axis
+    # ABS and MIN are ensuring it doesn't matter which one is left/right, or top/bottom
     $mx = abs($this->cx - $this->ax)/2 + min($this->ax, $this->cx);
     $my = abs($this->cy - $this->ay)/2 + min($this->ay, $this->cy);
 
+    # And now for the width and height of the box, some basic a²+b²=c² Pythagoras
     $AB = round( sqrt( pow(($this->bx - $this->ax),2) + pow(($this->by - $this->ay),2)  ) );
     $BC = round( sqrt( pow(($this->cx - $this->bx),2) + pow(($this->cy - $this->by),2)  ) );
 
+    # store for later use
     $this->left = round($mx - $AB/2);
     $this->top = round($my - $BC/2);
     $this->width = $AB;
     $this->height = $BC;
+    $this->rotation = $deg;
   }
 
   public function toHTML() {
