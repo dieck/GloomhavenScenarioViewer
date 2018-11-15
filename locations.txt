@@ -208,6 +208,40 @@ F GloomhavenScenario-015
 906 184 436 489 green Folgen
 
 
+% 066 Zahnradbucht
+F GloomhavenScenario-083
+0 0 1366 856 ivory ! Szenario 65
+478 1132 432 645 blue (1)
+914 1080 431 343 blue (1)
+916 1463 428 228 green Epilog
+920 1688 422 107 green Folgen
+
+F GloomhavenScenario-084
+325,438 150,360 360,155 lightgray [J1b]
+325 155 244 631 lightgray J1b
+599 383 204 357 gray C1a
+800 449 107 216 gray [C1a]
+800 663 9 31 gray [C1a]
+808 663 7 23 gray [C1a]
+814 665 6 12 gray [C1a]
+819 671 61 57 gray [C1a]
+722 749 368 292 gray D1a
+794 727 232 23 gray [D1a]
+880 676 85 53 gray [D1a]
+869 1039 118 50 gray [D1a]
+818 1039 59 65 gray [D1a]
+1086 819 38 67 gray [D1a]
+1124 663 166 380 gray A1a
+537 1031 218 405 gray D2a
+754 1038 64 378 gray [D2a]
+813 1103 82 250 gray [D2a]
+816 1350 54 59 gray [D2a]
+495 1241 44 61 gray [D2a]
+675,1499 1020,1306 1099,1442 gray A2a
+198 1052 311 357 gray C2b
+74 1430 497 174 red Gegner
+140 1599 506 161 orange Ausstattung
+
 % 999 Schatzindex
 F GloomhavenScenario-118
 0 0 1366 867 ivory ! Szenario 95
