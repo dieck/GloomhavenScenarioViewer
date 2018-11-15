@@ -242,6 +242,20 @@ F GloomhavenScenario-084
 74 1430 497 174 red Gegner
 140 1599 506 161 orange Ausstattung
 
+% 093 Versunkenes Schiff
+F GloomhavenScenario-115
+918 482 426 288 green Epilog
+919 777 428 122 green Folgen
+140 1607 347 169 red Gegner
+488 1604 811 180 orange Ausstattung
+449,1557 141,1029 280,958 lightgray G1a
+323 645 589 448 gray K2a
+307 908 20 115 gray [K2a]
+757 1082 75 62 gray [K2a]
+565 1116 423 379 gray I1a
+979 1256 44 79 gray [I1a]
+1035 1169 281 329 gray B3a
+
 % 999 Schatzindex
 F GloomhavenScenario-118
 0 0 1366 867 ivory ! Szenario 95
