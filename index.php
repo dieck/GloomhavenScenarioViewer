@@ -24,7 +24,7 @@
 .step {
     position: absolute;
     z-index: 2;
-    border-color: rgba(102, 102, 51, 0.5);
+    border-color: rgba(102, 102, 51, 0.2);
 }
 
 .stepi {
