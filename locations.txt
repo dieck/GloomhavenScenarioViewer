@@ -208,6 +208,28 @@ F GloomhavenScenario-015
 906 184 436 489 green Folgen
 
 
+% 012 Gloomhaven-Platz B
+F GloomhavenScenario-015
+0 0 1366 852 ivory ! Szenario 11
+466 1593 434 164 blue [(1)]
+903 1074 430 482 blue (1)
+894 1554 446 208 green Epilog
+
+F GloomhavenScenario-016
+23 90 873 324 green Epilog
+902 85 432 383 green Folgen
+617 909 719 173 red Gegner
+668 1087 601 182 orange Ausstattung
+62 428 498 296 gray [L1a + L2b]
+62 720 519 522 gray L1a + L2b
+610 470 229 390 lightgray E1a
+834 466 72 80 lightgray [E1a]
+831 778 78 87 lightgray [E1a]
+255 1243 199 531 gray H1b
+449 1379 370 241 gray [H1b]
+817 1318 394 420 gray D1a
+
+
 % 066 Zahnradbucht
 F GloomhavenScenario-083
 0 0 1366 856 ivory ! Szenario 65
